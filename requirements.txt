@@ -1,3 +1,4 @@
 flask
 tensorflow
 numpy
+firebase-admin
