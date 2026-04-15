@@ -5,22 +5,19 @@ import os
 
 app = Flask(__name__)
 
-# Load model
-model = tf.keras.models.load_model("model.h5")
+model = tf.keras.models.load_model("weather_lstm_model.h5")
 
-@app.route("/predict", methods=["GET"])
+@app.route("/")
+def home():
+    return "Server is running!"
+
+@app.route("/predict")
 def predict():
-    # TEST tạm input (sau sẽ nối Firebase)
     data = [30, 80, 1012]
-
     x = np.array(data).reshape(1, -1)
     pred = model.predict(x).tolist()
-
-    return jsonify({
-        "input": data,
-        "prediction": pred
-    })
+    return jsonify(pred)
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 10000))  # QUAN TRỌNG
     app.run(host="0.0.0.0", port=port)
