@@ -32,30 +32,38 @@ def predict():
         return jsonify({"error": "Unauthorized"}), 401
 
     try:
-        # Lấy 10 bản ghi cuối cùng từ nhánh lịch sử
-        ref = db.reference("weather_stations/Weather_station_1/history")
+        # 1. Trỏ vào mục 'readings' thay vì 'latest'
+        # Dùng .limit_to_last(10) để chỉ lấy 10 bản ghi mới nhất
+        ref = db.reference("weather_stations/Weather_station_1/readings")
         data_dict = ref.order_by_key().limit_to_last(10).get()
 
         if not data_dict or len(data_dict) < 10:
-             return jsonify({"error": "Chưa đủ 10 bản ghi dữ liệu lịch sử để dự báo"}), 400
+            return jsonify({
+                "error": f"Chưa đủ dữ liệu. Cần 10 bản ghi nhưng hiện mới có {len(data_dict) if data_dict else 0}"
+            }), 400
 
-        # Trích xuất dữ liệu thành mảng
+        # 2. Chuyển dữ liệu từ dạng Dictionary sang List để xử lý
+        # Firebase trả về dict theo key (timestamp), chúng ta cần sắp xếp đúng thứ tự thời gian
         sequence = []
-        for key, val in data_dict.items():
+        for key in sorted(data_dict.keys()):
+            val = data_dict[key]
             temp = float(val.get("temperature", 0.0))
-            hum = float(val.get("humidity", 0.0))
-            press = float(val.get("pressure", 0.0))
-            rain = float(val.get("rain", 0.0)) # Bổ sung thêm biến thứ 4
-            sequence.append([temp, hum, press, rain])
+            hum  = float(val.get("humidity", 0.0))
+            pres = float(val.get("pressure", 0.0))
+            rain = float(val.get("rain", 0.0)) # Thêm biến thứ 4 để đủ shape (..., 4)
+            
+            sequence.append([temp, hum, pres, rain])
 
-        # Chuyển thành Numpy array với kích thước (1, 10, 4)
+        # 3. Chuyển thành Numpy array và định dạng lại shape (1, 10, 4)
+        # (1 sample, 10 timesteps, 4 features)
         x = np.array(sequence).reshape(1, 10, 4)
 
-        # Chạy dự đoán
+        # 4. Dự đoán
         pred = model.predict(x).tolist()
 
         return jsonify({
             "status": "success",
+            "last_10_readings": sequence,
             "prediction": pred
         })
 
