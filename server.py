@@ -28,6 +28,10 @@ def home():
 @app.route("/predict", methods=["GET", "POST"])
 def predict():
     client_key = request.headers.get("x-api-key")
+
+    print(f"Key server đang có: '{API_KEY}'")
+    print(f"Key Postman gửi lên: '{client_key}'")
+
     if client_key != API_KEY:
         return jsonify({"error": "Unauthorized"}), 401
 
