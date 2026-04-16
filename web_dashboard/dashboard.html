@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Station Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <header>
+    <div class="header-left">
+        <img src="logo.png" alt="HCMUTE Logo" class="logo">
+        <h1>🌦 IoT Weather Station</h1>
+    </div>
+    <div class="controls">
+        <button id="btn-theme" class="btn-icon" title="Toggle Theme">🌙/☀️</button>
+        <button id="btn-lang-vi" class="btn">VI</button>
+        <button id="btn-lang-en" class="btn">EN</button>
+        <button id="btn-logout" class="btn btn-danger" data-lang="logout">Logout</button>
+    </div>
+</header>
+
+    <div class="container">
+        <section class="main-grid">
+            <div class="card map-box">
+                <h2 data-lang="mapTitle">Weather Map</h2>
+                <div id="map"></div>
+            </div>
+
+            <div class="sensor-panel">
+                <div class="card sensor-card">
+                    <h3 data-lang="temp">Temperature</h3>
+                    <p id="temp" class="sensor-value temp-color">--</p>
+                </div>
+                <div class="card sensor-card">
+                    <h3 data-lang="humidity">Humidity</h3>
+                    <p id="humidity" class="sensor-value hum-color">--</p>
+                </div>
+                <div class="card sensor-card">
+                    <h3 data-lang="rain">Rain</h3>
+                    <p id="rain" class="sensor-value rain-color">--</p>
+                </div>
+                <div class="card sensor-card">
+                    <h3 data-lang="pressure">Pressure</h3>
+                    <p id="pressure" class="sensor-value pressure-color">--</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card chart-area">
+            <h2 data-lang="history">Sensor History</h2>
+            <div class="chart-wrapper">
+                <canvas id="chart"></canvas>
+            </div>
+        </section>
+
+        <div class="bottom-grid">
+            <section class="card forecast">
+                <h2 data-lang="forecast">Weather Conclusion</h2>
+                <p id="forecastText" class="forecast-highlight">Waiting for data...</p>
+            </section>
+
+            <section class="card history">
+                <h2 data-lang="oldForecast">Forecast History</h2>
+                <ul id="forecastHistory" class="history-list"></ul>
+            </section>
+        </div>
+    </div>
+
+    <script src="lang.js"></script>
+    <script type="module" src="firebase.js"></script>
+    <script src="script.js"></script>
+    <script src="map.js"></script>
+</body>
+</html>
