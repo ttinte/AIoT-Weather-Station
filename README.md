@@ -2,8 +2,7 @@
 │   ├── server.py        
 │   ├── model.h5         
 │   ├── scaler.pkl       
-│   └── requirements.txt 
-├── esp32_node/          
+│   └── requirements.txt          
 │   └── main.ino         
 ├── web_dashboard/       
 │   ├── index.html
