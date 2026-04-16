@@ -1,5 +1,3 @@
-## 📁 Project Structure
-
 AIoT-WEATHER-Station/
 │
 ├── ai_server/
