@@ -1,4 +1,7 @@
-AIoT-WEATHER-Station/
+## 📁 Project Structure
+
+```text
+AIOT-WEATHER/
 │
 ├── ai_server/
 │   ├── server.py              # Flask API server
@@ -15,16 +18,16 @@ AIoT-WEATHER-Station/
 │   └── Predict_plot.png       # Prediction result (ignored)
 │
 ├── web_dashboard/
-│   ├── index.html             # Main dashboard UI
-│   ├── script.js              # Frontend logic
-│   ├── style.css              # Styling
-│   ├── firebase.js            # Firebase config
-│   ├── map.js                 # Map integration
-│   ├── lang.js                # Multi-language support
-│   └── logo.png               # UI asset
+│   ├── index.html
+│   ├── script.js
+│   ├── style.css
+│   ├── firebase.js
+│   ├── map.js
+│   ├── lang.js
+│   └── logo.png
 │
 ├── esp32_node/
-│   └── main.ino               # ESP32 firmware (data collection & send to server)
+│   └── main.ino               # ESP32 firmware
 │
 ├── .gitignore
 └── README.md
