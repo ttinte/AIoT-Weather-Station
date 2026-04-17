@@ -53,7 +53,7 @@ function subscribeToWeatherReadings({ limit = 15, onData, onError }) {
     
     // Tự động dò tìm thư mục ngày hôm nay (VD: "2026-04-16")
     //const todayStr = getTodayString(); 
-    const todayStr = "2026-04-04";
+    const todayStr =  getTodayString();
     // Mẹo: Nếu bạn muốn test dữ liệu ngày cũ trong ảnh, đổi thành: const todayStr = "2026-04-04";
     
     const READINGS_PATH = `weather_stations/Weather_station_1/readings/${todayStr}`;
