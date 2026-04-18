@@ -73,14 +73,23 @@ async function getForecastAI(temp, hum, rain) {
 
         const data = await response.json();
 
-        // Bóc tách dữ liệu theo đúng format trong ảnh chụp
+        // Bóc tách dữ liệu theo đúng format
         if (data.status === "success" && data.prediction && data.prediction.length > 0) {
             const predValues = data.prediction[0];
-            const nextTemp = predValues[0]; // 30.08...
-            const nextHum = predValues[1];  // 71.73...
             
-            // Bạn có thể chế lại thành câu văn hoặc dùng hàm getForecast cũ để đánh giá
-            return `AI dự báo 20 phút sau: ${nextTemp.toFixed(1)}°C, Ẩm ${nextHum.toFixed(1)}%`;
+            // Lấy 2 thông số cũ
+            const nextTemp = predValues[0]; // Vị trí 0: Nhiệt độ
+            const nextHum = predValues[1];  // Vị trí 1: Độ ẩm
+            
+            // Lấy thêm 2 thông số mới (dùng || 0 để lỡ AI chưa update thì web không bị lỗi NaN)
+            const nextPres = predValues[2] || 0; // Vị trí 2: Áp suất
+            const nextRain = predValues[3] || 0; // Vị trí 3: Mưa (Giả sử trả về số 0 hoặc 1)
+
+            // Do cảm biến mưa của bạn xài chữ Yes/No, nên ta quy đổi kết quả AI ra chữ cho đẹp:
+            const rainText = nextRain >= 0.5 ? "Có" : "Không"; 
+
+            // Trả về câu văn hoàn chỉnh
+            return `AI dự báo 20 phút sau: ${nextTemp.toFixed(1)}°C, Ẩm ${nextHum.toFixed(1)}%, Áp suất ${nextPres.toFixed(1)}hPa, Mưa: ${rainText}`;
         }
 
         return "AI không trả về dữ liệu hợp lệ.";
@@ -188,22 +197,6 @@ function initChart() {
 }
 let historyForecast = [];
 
-function getForecast(temp, hum, rain) {
-    if (rain > 3) {
-        return "Heavy rain expected";
-    }
-
-    if (hum > 80) {
-        return "Cloudy weather";
-    }
-
-    if (temp > 30) {
-        return "Hot sunny day";
-    }
-
-    return "Normal weather";
-}
-
 function formatSensorValue(value, unit) {
     return Number.isFinite(value) ? value.toFixed(1) + " " + unit : "--";
 }
@@ -216,24 +209,6 @@ function formatChartTime(timestamp) {
     return new Date(timestamp).toLocaleTimeString("vi-VN", { hour12: false });
 }
 
-function renderForecastHistory(readings) {
-    let list = document.getElementById("forecastHistory");
-    let fragment = document.createDocumentFragment();
-
-    historyForecast = readings
-        .slice()
-        .reverse()
-        .slice(0, 5)
-        .map((reading) => formatChartTime(reading.timestamp) + " - " + getForecast(reading.temperature, reading.humidity, reading.rain));
-
-    historyForecast.forEach((item) => {
-        let li = document.createElement("li");
-        li.innerText = item;
-        fragment.appendChild(li);
-    });
-
-    list.replaceChildren(fragment);
-}
 
 function renderChart(readings) {
     chart.data.labels = readings.map((reading) => formatChartTime(reading.timestamp));

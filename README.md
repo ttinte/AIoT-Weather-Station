@@ -25,6 +25,7 @@ AIoT-WEATHER-Station/
 │   ├── map.js
 │   ├── lang.js
 │   └── logo.png
+│   └── dashboard.html
 │
 ├── firmware/                  # ESP32 firmware (PlatformIO)
 │   ├── include/               # Header files (.h)
