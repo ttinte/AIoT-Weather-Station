@@ -273,7 +273,7 @@ function initDashboardRealtime() {
     }
 
     unsubscribeWeather = window.firebaseWeatherApi.subscribeToWeatherReadings({
-        limit: 72,
+        limit: 720,
         onData: ({ latest, history }) => {
             renderDashboardData(latest, history);
         },
