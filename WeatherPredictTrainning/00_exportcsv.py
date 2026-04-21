@@ -40,7 +40,7 @@ try:
     output_file = 'raw/weather_fixed.csv'
     df_10min.to_csv(output_file, index=False)
     
-    print(f"Done kèo! 🚀 Đã xử lý xong. Lọc ra {len(df_10min)} dòng. Đã vá lỗi rớt mạng.")
+    print(f"Done {len(df_10min)} ")
 
 except Exception as e:
     print(f"Ngoại lệ: {e}")
