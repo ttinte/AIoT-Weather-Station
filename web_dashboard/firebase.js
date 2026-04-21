@@ -3,11 +3,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getDatabase, onValue, ref, get, query, limitToLast, orderByKey } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBuot6MSqGdTXu19kEMfONUvIpid323Fj4",
-    authDomain: "aiotnhom2.firebaseapp.com",
-    databaseURL: "https://aiotnhom2-default-rtdb.firebaseio.com",
-    projectId: "aiotnhom2",
-    storageBucket: "aiotnhom2.appspot.com",
+  apiKey: "AIzaSyCEZa07j4UMaaHLhboLotGh8IFCs3bOciM",
+  authDomain: "aiotnhom2-80e7a.firebaseapp.com",
+  databaseURL: "https://aiotnhom2-80e7a-default-rtdb.firebaseio.com",
+  projectId: "aiotnhom2-80e7a",
+  storageBucket: "aiotnhom2-80e7a.firebasestorage.app",
+  messagingSenderId: "72429002560",
+  appId: "1:72429002560:web:9d970722994a70a61ba4a5",
+  measurementId: "G-TXP8W6MQ0T"
 };
 
 // Khởi tạo Firebase
@@ -153,3 +156,4 @@ window.firebaseWeatherApi = {
     hasConfiguredFirebase: true,
     subscribeToWeatherReadings
 };
+import "./script.js";
