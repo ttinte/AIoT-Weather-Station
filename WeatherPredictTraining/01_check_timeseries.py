@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-CSV_PATH = "weather_fixed_pro.csv"
+CSV_PATH = "raw/weather.csv"
 LOG_DIR = "logs"
 os.makedirs(LOG_DIR, exist_ok=True)
 

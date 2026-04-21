@@ -10,22 +10,31 @@ AIoT-WEATHER-Station/
 │   └── requirements.txt       # Python dependencies
 │
 ├── WeatherPredictTraining/
-│   ├── 01_check_timeseries.py # Missing value and outliers detection
-│   ├── train_lstm_model.py    # Train model
-│   ├── weather_fixed_pro.csv  # Dataset
-│   ├── weather_lstm_model.h5  # Trained LSTM model (ignored)
-│   ├── weather_scaler.pkl     # Data Scaler (ignored)
-│   └── Predict_plot.png       # Prediction result
+│   ├── raw/                   # Raw JSON data
+│   │
+│   ├── 00_exportcsv.py        # Convert JSON → CSV
+│   ├── 01_check_timeseries.py # Detect missing data & outliers
+│   ├── 02_fixdata.py          # Seasonal imputation
+│   ├── 03_train_lstm_model.py # Train LSTM model
+│   ├── 04_collect_data.py     # Weather data from Meteo API
+│   ├── 05_compare_data.py     # Compare IoT sensor data with Meteo data
+│   │
+│   ├── weather_fixed_pro.csv  
+│   ├── comparison_result.csv  
+│   ├── Predict_plot.png       
 │
 ├── web_dashboard/
-│   ├── index.html
-│   ├── script.js
-│   ├── style.css
-│   ├── firebase.js
+│   ├── index.html             # Login Page
+│   ├── dashboard.html         # Dashboard
+│   │
+│   ├── config.js              # ⚠️ Firebase/API config (ignored)
+│   ├── firebase.js            # Connect Firebase
+│   ├── script.js              # Logic dashboard + AI call
 │   ├── map.js
 │   ├── lang.js
+│   │
+│   ├── style.css
 │   └── logo.png
-│   └── dashboard.html
 │
 ├── firmware/                  # ESP32 firmware (PlatformIO)
 │   ├── include/               # Header files (.h)

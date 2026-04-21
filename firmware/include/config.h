@@ -27,11 +27,11 @@
 #endif
 
 #ifndef API_KEY
-#define API_KEY "AIzaSyBuot6MSqGdTXu19kEMfONUvIpid323Fj4"
+#define API_KEY "YOUR_API_KEY"
 #endif
 
 #ifndef DATABASE_URL
-#define DATABASE_URL "https://aiotnhom2-default-rtdb.firebaseio.com/"
+#define DATABASE_URL "YOUR_URL"
 #endif
 
 #ifndef DHT_GPIO
@@ -62,7 +62,7 @@ namespace config
   constexpr char FIREBASE_LATEST_SUFFIX[] = "/latest";
   constexpr char FIREBASE_READINGS_SUFFIX[] = "/readings/";
 
-  constexpr unsigned long UPLOAD_INTERVAL_MS = 60000;
+  constexpr unsigned long UPLOAD_INTERVAL_MS = 600000;
   constexpr unsigned long WIFI_RETRY_INTERVAL_MS = 5000;
   constexpr unsigned long FIREBASE_RETRY_INTERVAL_MS = 5000;
   constexpr unsigned long FIREBASE_INIT_RETRY_MAX_MS = 60000;

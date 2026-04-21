@@ -1,4 +1,4 @@
-const MAP_CENTER = { lat: 10.872001839047012, lng: 106.75785097824844 };
+const MAP_CENTER = { lat: 10.853142956334276, lng: 106.77170424853325 };
 const MAP_ZOOM = 14;
 
 function injectMarkerAnimationStyles() {

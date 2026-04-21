@@ -58,11 +58,11 @@ async function getForecastAI(temp, hum, rain) {
         };
 
         // Bắn request sang server Render
-        const response = await fetch("https://weatherpredict-model-5.onrender.com/predict", {
+        const response = await fetch(`${API_CONFIG.BASE_URL}/predict`, {
             method: "POST", 
             headers: {
                 "Content-Type": "application/json",
-                "x-api-key": "nhom2"
+                "x-api-key": API_CONFIG.API_KEY
             },
             body: JSON.stringify(requestBody) 
         });
@@ -273,7 +273,7 @@ function initDashboardRealtime() {
     }
 
     unsubscribeWeather = window.firebaseWeatherApi.subscribeToWeatherReadings({
-        limit: 72,
+        limit: 720,
         onData: ({ latest, history }) => {
             renderDashboardData(latest, history);
         },
@@ -376,3 +376,4 @@ window.addEventListener('languageChanged', () => {
         // thì ta không dịch đè lên kết quả đó. Lần data mới tới, AI sẽ tự trả về ngôn ngữ mới.
     }
 });
+import { API_CONFIG } from "./config.js";

@@ -1,8 +1,22 @@
 #Security
 firebase_key.json
-rawdata.json
+web_dashboard/config.js
 
 .vscode/
 weather_lstm_model.keras
 WeatherPredictTraining/*.h5
 WeatherPredictTraining/*.pkl
+
+.agents
+.claude
+.firebase
+database.rules.json
+firebase.json
+skills-lock.json
+.firebaserc
+
+public
+
+*.csv#
+*.csv
+logs
