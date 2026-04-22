@@ -27,11 +27,11 @@
 #endif
 
 #ifndef API_KEY
-#define API_KEY "AIzaSyCEZa07j4UMaaHLhboLotGh8IFCs3bOciM"
+#define API_KEY "YOUR_API_KEY"
 #endif
 
 #ifndef DATABASE_URL
-#define DATABASE_URL "https://aiotnhom2-80e7a-default-rtdb.firebaseio.com"
+#define DATABASE_URL "YOUR_URL"
 #endif
 
 #ifndef DHT_GPIO
