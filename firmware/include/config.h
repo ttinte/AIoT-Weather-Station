@@ -31,7 +31,7 @@
 #endif
 
 #ifndef DATABASE_URL
-#define DATABASE_URL "YOUR_URL"
+#define DATABASE_URL "https://aiotnhom2-80e7a-default-rtdb.firebaseio.com"
 #endif
 
 #ifndef DHT_GPIO
