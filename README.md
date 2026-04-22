@@ -19,9 +19,7 @@ AIoT-WEATHER-Station/
 │   ├── 04_collect_data.py     # Weather data from Meteo API
 │   ├── 05_compare_data.py     # Compare IoT sensor data with Meteo data
 │   │
-│   ├── weather_fixed_pro.csv  
-│   ├── comparison_result.csv  
-│   ├── Predict_plot.png       
+│   └── Predict_plot.png       
 │
 ├── web_dashboard/
 │   ├── index.html             # Login Page
@@ -38,10 +36,7 @@ AIoT-WEATHER-Station/
 │
 ├── firmware/                  # ESP32 firmware (PlatformIO)
 │   ├── include/               # Header files (.h)
-│   ├── lib/                   # External libraries
-│   ├── src/                   # Main source code (.cpp / .ino)
-│   ├── test/                  # Unit tests
-│   ├── .gitignore
+│   ├── src/                   # Main source code (.cpp)
 │   └── platformio.ini         # PlatformIO config
 │
 ├── .gitignore
