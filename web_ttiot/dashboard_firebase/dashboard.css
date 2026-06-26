@@ -510,3 +510,18 @@ body.dark-mode .station-badge {
   background: #374151;
   color: #60a5fa;
 }
+
+/* =========================================
+   HIỆU ỨNG CẢNH BÁO CHỚP ĐỎ
+========================================= */
+@keyframes flashAlert {
+  0% { box-shadow: inset 0 0 0px rgba(239, 68, 68, 0); }
+  50% { box-shadow: inset 0 0 120px rgba(239, 68, 68, 0.6); }
+  100% { box-shadow: inset 0 0 0px rgba(239, 68, 68, 0); }
+}
+
+body.alert-active {
+  animation: flashAlert 1s infinite;
+  /* Đổi viền topbar và card cho gắt hơn */
+  border-top: 5px solid #ef4444; 
+}
