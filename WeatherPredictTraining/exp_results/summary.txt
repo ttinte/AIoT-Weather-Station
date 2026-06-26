@@ -1,0 +1,28 @@
+=== KẾT QUẢ TÓM TẮT ===
+Khoảng thời gian: 2026-06-16 đến 2026-06-18 (UTC)
+Số bản ghi forecast: 2681 | readings: 2691 | cặp ghép: 2662
+
+--- Chỉ số đánh giá (LSTM vs Persistence) ---
+         Biến     Mô hình    MAE   RMSE   MAPE      ME     R2      r
+Nhiệt độ (°C)        LSTM 0.2987 0.3569 0.9749 -0.2699 0.8961 0.9797
+Nhiệt độ (°C) Persistence 0.1470 0.1999 0.4839 -0.0146 0.9674 0.9837
+    Độ ẩm (%)        LSTM 1.2348 1.5582 1.7036 -1.1215 0.8336 0.9627
+    Độ ẩm (%) Persistence 0.6755 0.8965 0.9393  0.0706 0.9449 0.9724
+Áp suất (hPa)        LSTM 0.3365 0.4317 0.0336 -0.2606 0.9187 0.9771
+Áp suất (hPa) Persistence 0.2342 0.2850 0.0234  0.0199 0.9646 0.9825
+
+--- Skill Score ---
+         Biến  RMSE_LSTM  RMSE_Persistence  Skill Score
+Nhiệt độ (°C)     0.3569            0.1999      -0.7854
+    Độ ẩm (%)     1.5582            0.8965      -0.7381
+Áp suất (hPa)     0.4317            0.2850      -0.5150
+
+--- Open-Meteo so với thực tế (hourly) ---
+         Biến    Mô hình     MAE    RMSE    MAPE      ME       R2      r
+Nhiệt độ (°C) Open-Meteo  2.3397  2.7132  7.7760 -1.6746  -5.2471 0.6999
+    Độ ẩm (%) Open-Meteo 12.9974 14.7756 17.7720  8.6565 -14.4713 0.6091
+Áp suất (hPa) Open-Meteo  5.1409  5.1581  0.5132  5.1409 -10.9542 0.9593
+
+Hình PNG : exp_results/eval_*.png
+Bảng CSV : exp_results/table_*.csv
+Dữ liệu  : exp_results/eval_results.csv
