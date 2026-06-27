@@ -71,7 +71,9 @@ def run_prediction():
     with _predict_lock:
         scaled_input = scaler.transform(sequence[-WINDOW_SIZE:])
         x = np.array(scaled_input).reshape(1, WINDOW_SIZE, 4)
-        scaled_pred = model.predict(x)
+        inference_start = time.perf_counter()
+        scaled_pred = model.predict(x, verbose=0)
+        inference_latency_ms = (time.perf_counter() - inference_start) * 1000
         final = scaler.inverse_transform(scaled_pred)[0]
 
     return {
@@ -79,6 +81,7 @@ def run_prediction():
         "humidity": round(float(final[1]), 2),
         "pressure": round(float(final[2]), 2),
         "rain": 1.0 if final[3] > 0.5 else 0.0,
+        "inference_latency_ms": round(inference_latency_ms, 2),
     }
 
 
@@ -125,7 +128,10 @@ def on_latest_update(event):
             return
         path = save_forecast(result, source_sec)
         if path:
-            print(f"[auto-predict] Đã ghi forecast tại {path}: {result}")
+            print(
+                f"[auto-predict] Đã ghi forecast tại {path}: {result} "
+                f"| inference={result.get('inference_latency_ms')} ms"
+            )
         else:
             print(f"[auto-predict] Forecast cho source={source_sec} đã tồn tại, bỏ qua.")
     except Exception as e:
@@ -163,7 +169,8 @@ def predict():
             "status": "success",
             "prediction": [[result["temperature"], result["humidity"],
                             result["pressure"], result["rain"]]],
-            "forecast": result
+            "forecast": result,
+            "inference_latency_ms": result["inference_latency_ms"],
         })
 
     except Exception as e:
