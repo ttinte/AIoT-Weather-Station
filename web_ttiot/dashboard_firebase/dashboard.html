@@ -7,16 +7,20 @@
   <title>IoT Weather Dashboard</title>
 
   <link rel="stylesheet" href="dashboard.css" />
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 
 <body>
+
+  <!-- Đọc trạng thái Dark Mode từ Setting để đổi màu ngay lập tức -->
+  <script>
+    const savedSettings = JSON.parse(localStorage.getItem('iotWeatherSettings'));
+    if (savedSettings && savedSettings.theme === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+  </script>
+
   <div class="container">
 
     <!-- SIDEBAR -->
@@ -28,20 +32,18 @@
         </div>
 
         <nav class="menu">
-          <a href="#" class="menu-item active">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Dashboard</span>
-          </a>
-
-          <a href="#" class="menu-item">
-            <i class="fa-solid fa-circle-info"></i>
-            <span>Tổng quan</span>
-          </a>
-
-          <a href="#" class="menu-item">
-            <i class="fa-solid fa-gear"></i>
-            <span>Cài đặt</span>
-          </a>
+            <a href="../overview/overview.html" class="menu-item">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>Tổng quan</span>
+            </a>
+            <a href="#" class="menu-item active">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="../setting/setting.html" class="menu-item">
+                <i class="fa-solid fa-gear"></i>
+                <span>Cài đặt</span>
+            </a>
         </nav>
       </div>
 
@@ -51,7 +53,7 @@
       </div>
     </aside>
 
-    <!-- MAIN -->
+    <!-- MAIN CONTENT -->
     <main class="main-content">
 
       <!-- HEADER -->
@@ -60,7 +62,6 @@
           <h1>IoT Weather Station</h1>
           <p>Hệ thống giám sát và dự báo thời tiết thời gian thực</p>
         </div>
-
         <div class="station-badge">
           <i class="fa-solid fa-location-dot"></i>
           <span>Trạm đo nhóm 2</span>
@@ -69,13 +70,11 @@
 
       <!-- MAP + SENSOR CARD -->
       <section class="dashboard-top">
-
         <!-- BẢN ĐỒ -->
         <div class="card map-card">
           <div class="card-header">
             <h3>Bản đồ thời tiết</h3>
           </div>
-
           <div class="real-map">
             <iframe
               src="https://maps.google.com/maps?q=10.851437,106.771751&z=17&output=embed"
@@ -91,43 +90,26 @@
 
         <!-- 4 Ô THÔNG SỐ -->
         <div class="weather-grid">
-
           <div class="info-card">
-            <div class="info-icon temp-bg">
-              <i class="fa-solid fa-temperature-high"></i>
-            </div>
-
+            <div class="info-icon temp-bg"><i class="fa-solid fa-temperature-high"></i></div>
             <p>Nhiệt độ</p>
             <h2 class="temp" id="temperatureValue">-- °C</h2>
           </div>
-
           <div class="info-card">
-            <div class="info-icon humid-bg">
-              <i class="fa-solid fa-droplet"></i>
-            </div>
-
+            <div class="info-icon humid-bg"><i class="fa-solid fa-droplet"></i></div>
             <p>Độ ẩm</p>
             <h2 class="humid" id="humidityValue">-- %</h2>
           </div>
-
           <div class="info-card">
-            <div class="info-icon rain-bg">
-              <i class="fa-solid fa-cloud-rain"></i>
-            </div>
-
+            <div class="info-icon rain-bg"><i class="fa-solid fa-cloud-rain"></i></div>
             <p>Mưa</p>
             <h2 class="rain" id="rainValue">--</h2>
           </div>
-
           <div class="info-card">
-            <div class="info-icon press-bg">
-              <i class="fa-solid fa-gauge-high"></i>
-            </div>
-
+            <div class="info-icon press-bg"><i class="fa-solid fa-gauge-high"></i></div>
             <p>Áp suất</p>
             <h2 class="press" id="pressureValue">-- hPa</h2>
           </div>
-
         </div>
       </section>
 
@@ -136,123 +118,38 @@
         <div class="card-header">
           <h3>Lịch sử cảm biến</h3>
         </div>
-
         <canvas id="sensorChart"></canvas>
       </section>
 
-      <!-- KẾT LUẬN + DỰ BÁO THEO GIỜ -->
+      <!-- KẾT LUẬN + LỊCH SỬ DỰ BÁO -->
       <section class="bottom-grid">
-
         <div class="card result-card">
           <div class="card-header">
             <h3>Kết luận thời tiết</h3>
           </div>
-
           <div class="result-box">
             <i class="fa-solid fa-brain"></i>
-            <p id="weatherConclusion">
-              Đang chờ dữ liệu từ cảm biến...
-            </p>
+            <p id="weatherConclusion">Đang chờ dữ liệu từ cảm biến...</p>
           </div>
         </div>
 
         <div class="card forecast-card">
           <div class="card-header">
-            <h3>Dự báo theo giờ</h3>
+            <h3>Lịch sử dự báo</h3>
           </div>
-
-          <div class="forecast-list">
-            <div class="forecast-item">
-              <span>18:00</span>
-              <span><i class="fa-solid fa-cloud-sun"></i> Nhiều mây</span>
-              <strong>30°C</strong>
-            </div>
-
-            <div class="forecast-item">
-              <span>19:00</span>
-              <span><i class="fa-solid fa-cloud"></i> Có mây</span>
-              <strong>29°C</strong>
-            </div>
-
-            <div class="forecast-item">
-              <span>20:00</span>
-              <span><i class="fa-solid fa-cloud-rain"></i> Mưa nhẹ</span>
-              <strong>28°C</strong>
-            </div>
-
-            <div class="forecast-item">
-              <span>21:00</span>
-              <span><i class="fa-solid fa-cloud-moon"></i> Trời mát</span>
-              <strong>27°C</strong>
+          <div class="forecast-list" id="forecastHistory">
+            <!-- JavaScript sẽ đẩy lịch sử dự báo AI vào đây -->
+            <div class="forecast-item" style="grid-template-columns: 1fr; text-align: center; color: #6b7280;">
+              Chưa có dữ liệu dự báo...
             </div>
           </div>
-        </div>
-
-      </section>
-
-      <!-- DỰ BÁO THEO TUẦN -->
-      <section class="card weekly-card">
-        <div class="card-header">
-          <h3>Lịch sử dự báo theo tuần</h3>
-        </div>
-
-        <div class="weekly-grid">
-
-          <div class="day-card">
-            <h4>Thứ 2</h4>
-            <i class="fa-solid fa-sun"></i>
-            <p>Nắng</p>
-            <strong>32° / 26°</strong>
-          </div>
-
-          <div class="day-card">
-            <h4>Thứ 3</h4>
-            <i class="fa-solid fa-cloud-sun"></i>
-            <p>Ít mây</p>
-            <strong>31° / 25°</strong>
-          </div>
-
-          <div class="day-card">
-            <h4>Thứ 4</h4>
-            <i class="fa-solid fa-cloud"></i>
-            <p>Nhiều mây</p>
-            <strong>30° / 25°</strong>
-          </div>
-
-          <div class="day-card">
-            <h4>Thứ 5</h4>
-            <i class="fa-solid fa-cloud-rain"></i>
-            <p>Mưa nhẹ</p>
-            <strong>29° / 24°</strong>
-          </div>
-
-          <div class="day-card">
-            <h4>Thứ 6</h4>
-            <i class="fa-solid fa-cloud-showers-heavy"></i>
-            <p>Mưa vừa</p>
-            <strong>28° / 24°</strong>
-          </div>
-
-          <div class="day-card">
-            <h4>Thứ 7</h4>
-            <i class="fa-solid fa-cloud-sun-rain"></i>
-            <p>Mưa rào</p>
-            <strong>30° / 25°</strong>
-          </div>
-
-          <div class="day-card">
-            <h4>Chủ nhật</h4>
-            <i class="fa-solid fa-sun"></i>
-            <p>Nắng đẹp</p>
-            <strong>33° / 26°</strong>
-          </div>
-
         </div>
       </section>
+      <!-- ĐÃ XÓA PHẦN DỰ BÁO THEO TUẦN -->
 
     </main>
   </div>
 
-  <script type="module" src="dashboard.js"></script>
+  <script type="module" src="dashboard.js?v=20260626-api2"></script>
 </body>
 </html>

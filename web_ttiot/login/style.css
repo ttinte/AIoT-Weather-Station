@@ -1,0 +1,166 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Nền gradient sáng sủa phù hợp với trạm thời tiết */
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+    position: relative;
+}
+
+/* --- LOGO GÓC TRÁI TRÊN CÙNG --- */
+.header-logo {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-logo img {
+    width: 60px;
+    height: auto;
+}
+
+.header-logo .header-text {
+    color: #1e3c72; /* Xanh đậm đồng bộ form */
+    font-weight: bold;
+}
+
+.header-text .title-vi {
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+.header-text .title-en {
+    font-size: 15px;
+}
+
+/* --- CONTAINER & FORM CHÍNH Ở GIỮA --- */
+.container {
+    width: 100%; 
+    max-width: 450px; 
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 24px;
+    color: #2a5298;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.sub-title {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+form {
+    width: 100%;
+}
+
+.input-group { 
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid #e1e5ee;
+    background-color: #f8fafd;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #2a5298;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(42, 82, 152, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(42, 82, 152, 0.4);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.forgot-pass {
+    display: block;
+    text-align: right;
+    font-size: 13px;
+    color: #666;
+    text-decoration: none;
+    margin-bottom: 20px;
+    margin-top: -10px;
+    transition: 0.3s;
+}
+
+.forgot-pass:hover {
+    text-decoration: underline;
+    color: #2a5298;
+}
+
+/* --- TEXT CHUYỂN FORM Ở DƯỚI CÙNG --- */
+.toggle-text {
+    margin-top: 25px;
+    font-size: 14px;
+    color: #555;
+}
+
+.toggle-text a {
+    color: #2a5298;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.toggle-text a:hover {
+    text-decoration: underline;
+}
+
+.desc-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+/* Thêm vào cuối file style.css */
+.btn-disabled {
+    background: #a0a0a0 !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    transform: none !important;
+}

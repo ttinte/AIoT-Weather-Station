@@ -14,9 +14,11 @@ database.rules.json
 firebase.json
 skills-lock.json
 .firebaserc
+firebase-debug.log
 
 public
 
 *.csv#
 *.csv
 logs
+mrp

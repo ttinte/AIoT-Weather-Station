@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trạm Quang Trắc Thời Tiết - HCMUTE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header-logo">
+        <img src="logo.png" alt="HCMUTE Logo">
+        <div class="header-text">
+            <div class="title-vi">TRƯỜNG ĐẠI HỌC CÔNG NGHỆ KỸ THUẬT</div>
+            <div class="title-en">TP.HCM</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form-section">
+            <h1 class="main-title">Trạm quang trắc thời tiết</h1>
+            <h2 id="formTitle" class="sub-title">ĐĂNG NHẬP</h2>
+            
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="email" id="loginUser" placeholder="Tên đăng nhập (Email sinh viên)" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="loginPass" placeholder="Mật khẩu" required>
+                </div>
+                <a href="#" id="linkForgotPass" class="forgot-pass">Quên mật khẩu?</a>
+
+                <button type="submit" class="btn-primary">Đăng nhập</button>
+
+                <div class="toggle-text">
+                    Chưa có tài khoản truy cập hệ thống? <a href="#" id="btnShowRegister">Đăng ký ngay</a>
+                </div>
+            </form>
+
+            <form id="registerForm" class="hidden">
+                <div class="input-group">
+                    <input type="text" id="regName" placeholder="Họ và tên" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="regEmail" placeholder="Email (@student.hcmute.edu.vn)" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="regPass" placeholder="Mật khẩu" required>
+                </div>
+                
+                <button type="submit" class="btn-primary">Đăng ký</button>
+
+                <div class="toggle-text">
+                    Đã có tài khoản? <a href="#" id="btnShowLogin">Đăng nhập ngay</a>
+                </div>
+            </form>
+            
+            <form id="forgotForm" class="hidden">
+                <p style="font-size: 14px; margin-bottom: 15px; color: #555;">Nhập email đăng ký để nhận liên kết khôi phục</p>
+
+                 <div class="input-group">
+                     <input type="email" id="forgotEmail" placeholder="Email (@student.hcmute.edu.vn)" required>
+                </div>
+
+                    <button type="button" id="btnSendResetLink" class="btn-primary" style="margin-bottom: 15px;">Gửi liên kết khôi phục</button>
+
+                <a href="#" id="linkBackToLogin" class="forgot-pass" style="text-align: center; margin-top: 20px; display: block;">Quay lại đăng nhập</a>
+            </form>
+
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

@@ -459,3 +459,69 @@ body {
     font-size: 24px;
   }
 }
+/* =========================================
+   GIAO DIỆN TỐI (DARK MODE) CHO DASHBOARD
+========================================= */
+body.dark-mode {
+  background: #111827;
+  color: #f9fafb;
+}
+
+body.dark-mode .topbar,
+body.dark-mode .card,
+body.dark-mode .info-card,
+body.dark-mode .day-card {
+  background: #1f2937;
+  border: 1px solid #374151;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .topbar h1,
+body.dark-mode .card-header h3,
+body.dark-mode .day-card h4,
+body.dark-mode .day-card strong,
+body.dark-mode .result-box p {
+  color: #f9fafb;
+}
+
+body.dark-mode .topbar p,
+body.dark-mode .info-card p,
+body.dark-mode .day-card p {
+  color: #9ca3af;
+}
+
+body.dark-mode .result-box,
+body.dark-mode .forecast-item {
+  background: #374151;
+  border-left-color: #3b82f6;
+  color: #e5e7eb;
+}
+
+body.dark-mode .forecast-item span:nth-child(2) {
+  color: #d1d5db;
+}
+
+body.dark-mode .real-map {
+  border-color: #374151;
+  opacity: 0.85; /* Giảm độ chói của bản đồ */
+}
+
+body.dark-mode .station-badge {
+  background: #374151;
+  color: #60a5fa;
+}
+
+/* =========================================
+   HIỆU ỨNG CẢNH BÁO CHỚP ĐỎ
+========================================= */
+@keyframes flashAlert {
+  0% { box-shadow: inset 0 0 0px rgba(239, 68, 68, 0); }
+  50% { box-shadow: inset 0 0 120px rgba(239, 68, 68, 0.6); }
+  100% { box-shadow: inset 0 0 0px rgba(239, 68, 68, 0); }
+}
+
+body.alert-active {
+  animation: flashAlert 1s infinite;
+  /* Đổi viền topbar và card cho gắt hơn */
+  border-top: 5px solid #ef4444; 
+}

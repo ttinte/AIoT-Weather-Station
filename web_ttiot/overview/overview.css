@@ -1,3 +1,6 @@
+/* =========================================
+   1. VARIABLES & BASE
+   ========================================= */
 * { box-sizing: border-box; }
 
 :root {
@@ -17,91 +20,97 @@ body {
   background: radial-gradient(circle at top right, #f8faff 0%, var(--bg) 50%, #edf2fb 100%);
 }
 
-.app-layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
-.content { padding: 26px; display: flex; flex-direction: column; gap: 22px; }
+.app-layout { 
+  display: block; /* Đổi sang block để tương thích với sidebar cố định */
+  min-height: 100vh; 
+}
 
+.content { 
+  padding: 26px; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 22px; 
+  margin-left: 250px; /* Đẩy nội dung sang phải 250px chừa chỗ cho Sidebar */
+}
+
+/* =========================================
+   2. SIDEBAR CHUẨN TỪ DASHBOARD
+   ========================================= */
 .sidebar {
-  background: linear-gradient(180deg, #1a3b73 0%, #183467 100%);
-  color: #fff;
-  padding: 24px 16px;
+  width: 250px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #1d4ed8, #1e40af, #1e3a8a);
+  color: white;
+  padding: 24px 18px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.08);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
 }
 
-.brand,
-.team-badge,
-.menu,
-.top-card,
-.contact-col p,
-.flow,
-.flow-item {
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: bold;
+  margin-bottom: 42px;
+}
+
+.logo i { font-size: 34px; }
+.logo span { font-size: 22px; }
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.menu-item {
+  text-decoration: none;
+  color: white;
+  padding: 15px 18px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 17px;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.menu-item i { width: 22px; text-align: center; }
+
+.menu-item:hover,
+.menu-item.active {
+  background: white;
+  color: #1d4ed8;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+.sidebar-footer {
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.sidebar-footer p { font-weight: bold; margin-bottom: 6px; color: white;}
+.sidebar-footer small { opacity: 0.9; color: white;}
+
+/* =========================================
+   3. NỘI DUNG OVERVIEW (GIỮ NGUYÊN BẢN GỐC)
+   ========================================= */
+.team-badge, .top-card, .contact-col p, .flow, .flow-item {
   display: flex;
   align-items: center;
 }
 
-.brand { gap: 10px; margin-bottom: 26px; }
-.menu { flex-direction: column; gap: 8px; }
-
-.logo,
-.avatar,
-.flow-item span,
-.contact-icon,
-.empty-icon,
-.proto-image-wrap,
-.logo img,
-.empty-state {
+.avatar, .flow-item span, .contact-icon, .empty-icon, .proto-image-wrap, .empty-state {
   display: grid;
   place-items: center;
 }
-
-.logo {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  overflow: hidden;
-}
-
-.logo img { width: 100%; height: 100%; object-fit: cover; }
-.brand-text { font-weight: 600; letter-spacing: 0.15px; font-size: 14px; }
-
-.menu-item {
-  text-decoration: none;
-  color: #dfebff;
-  padding: 12px 14px;
-  border-radius: 12px;
-  font-weight: 500;
-  letter-spacing: 0.1px;
-  transition: 0.2s ease;
-  transition-property: background-color, transform, color, box-shadow;
-}
-
-.menu-item.active {
-  background: var(--card-bg);
-  color: #264f9d;
-  box-shadow: 0 6px 14px rgba(10, 29, 61, 0.2);
-  font-weight: 600;
-}
-
-.menu-item:hover {
-  background: rgba(255, 255, 255, 0.16);
-  transform: translateX(2px);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-
-.collapse-btn {
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 10px;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  transition: background-color 0.2s ease;
-}
-
-.collapse-btn:hover { background: rgba(255, 255, 255, 0.16); }
 
 .card {
   background: var(--card-bg);
@@ -242,6 +251,9 @@ h2 {
 .contact-col a { color: #3e5683; text-decoration: none; transition: color 0.2s ease; }
 .contact-col a:hover { color: #274c93; }
 
+/* =========================================
+   4. RESPONSIVE (TƯƠNG THÍCH ĐIỆN THOẠI)
+   ========================================= */
 @media (max-width: 1200px) {
   .middle-grid,
   .bottom-grid { grid-template-columns: 1fr; }
@@ -251,12 +263,17 @@ h2 {
 }
 
 @media (max-width: 900px) {
-  .app-layout { grid-template-columns: 1fr; }
-
+  /* Giải phóng sidebar cố định trên điện thoại */
   .sidebar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    position: relative;
+    width: 100%;
+    min-height: auto;
+  }
+  
+  /* Trả lại không gian trống bên trái cho phần content */
+  .content {
+    margin-left: 0;
+    padding: 16px;
   }
 
   .top-card {
@@ -264,4 +281,56 @@ h2 {
     align-items: flex-start;
     gap: 14px;
   }
+}
+/* =========================================
+   GIAO DIỆN TỐI (DARK MODE) CHO OVERVIEW
+========================================= */
+body.dark-mode {
+  background: #111827;
+  color: #f9fafb;
+}
+
+body.dark-mode .card {
+  background: #1f2937;
+  border: 1px solid #374151;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode .overview-card p,
+body.dark-mode .bottom-grid p,
+body.dark-mode .bottom-grid p strong,
+body.dark-mode .features ul,
+body.dark-mode .caption {
+  color: #f9fafb;
+}
+
+body.dark-mode .top-card > div > p,
+body.dark-mode .note,
+body.dark-mode .badge-meta p {
+  color: #9ca3af;
+}
+
+body.dark-mode .team-badge,
+body.dark-mode .flow-item,
+body.dark-mode .proto-image-wrap {
+  background: #374151;
+  border-color: #4b5563;
+}
+
+body.dark-mode .flow-item strong,
+body.dark-mode .badge-meta strong {
+  color: #f9fafb;
+}
+
+body.dark-mode .flow-item span,
+body.dark-mode .contact-icon {
+  background: #4b5563;
+  color: #60a5fa;
+}
+
+body.dark-mode .contact-col a {
+  color: #60a5fa;
 }

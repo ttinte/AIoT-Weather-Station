@@ -11,16 +11,36 @@
 </head>
 <body>
     <div class="container">
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <h2><i class="fas fa-cloud-sun"></i> IoT Weather</h2>
-            </div>
-            <ul class="nav-links">
-                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
-                <li><a href="overview.html"><i class="fas fa-chart-pie"></i> Tổng quan</a></li>
-                <li class="active"><a href="setting.html"><i class="fas fa-cog"></i> Cài đặt</a></li>
-            </ul>
-        </aside>
+<aside class="sidebar">
+    <div>
+        <div class="logo">
+            <i class="fa-solid fa-cloud-sun-rain"></i>
+            <span>IoT Weather</span>
+        </div>
+
+<nav class="menu">
+    <a href="../overview/overview.html" class="menu-item">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>Tổng quan</span>
+    </a>
+
+    <a href="../dashboard_firebase/dashboard.html" class="menu-item">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Dashboard</span>
+    </a>
+
+    <a href="#" class="menu-item active">
+        <i class="fa-solid fa-gear"></i>
+        <span>Cài đặt</span>
+    </a>
+</nav>
+    </div>
+
+    <div class="sidebar-footer">
+        <p>Weather Monitoring</p>
+        <small>ESP32 + Sensor + Web</small>
+    </div>
+</aside>
 
         <main class="main-content">
             <header class="top-header">
